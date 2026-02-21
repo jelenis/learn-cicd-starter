@@ -8,6 +8,9 @@ jobs:
     delploy:
         name: Deploy
         runs-on: ubuntu-latest
+            # This part
+        env:
+            DATABASE_URL: ${{ secrets.DATABASE_URL }}
         steps:
             - name: Check out code
               uses: actions/checkout@v4
@@ -37,3 +40,5 @@ jobs:
             - name: Deploy to Cloud Run
               run: gcloud run deploy notely --image us-central1-docker.pkg.dev/enduring-plate-488114-t5/notely-ar-repo/notely:latest --region us-central1 --allow-unauthenticated --project enduring-plate-488114-t5 --max-instances=4
             
+            - name: run migrations
+              run: ./scripts/migrateup.sh 
