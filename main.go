@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strings"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/cors"
@@ -93,7 +92,7 @@ func main() {
 		Addr:    ":" + port,
 		Handler: router,
 	}
-	port = strings.ReplaceAll(port, "\n", "")
+	// port = strings.ReplaceAll(port, "\n", "")
 	// log.Println("Serving on port:", port)
 	log.Fatal(srv.ListenAndServe())
 }
